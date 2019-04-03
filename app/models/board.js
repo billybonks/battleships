@@ -27,42 +27,45 @@ export default class Boat {
   insertBoat(boat) {
     let inserted = this.attemptInsert(boat);
     while(!inserted){
-      debugger
-      console.log('collided')
       inserted = this.attemptInsert(boat);
     }
   }
 
   attemptInsert(boat) {
-    let c = null;
-    let r = null;
+    let coords = {
+      x: Math.abs(Math.floor(Math.random() *  this.size)),
+      y: Math.abs(Math.floor(Math.random() *  this.size)),
+    }
+
     if(boat.direction === VERTICAL) {
-      c = Math.abs(Math.floor(Math.random() *  this.size - boat.length));
-      r = Math.abs(Math.floor(Math.random() *  this.size));
+      coords.x = coords.x + boat.length > this.size ? coords.x - boat.length : coords.x
+    } else {
+      coords.y = coords.y + boat.length > this.size ? coords.y - boat.length : coords.y
+    }
+
+    if(boat.direction === VERTICAL) {
       for(let i = 0; i < boat.length; i++) {
         //dry run
-        if(this.board[r][c+i] === 2){
+        if(this.board[coords.y][coords.x+i] === 2){
           return false;
         }
       }
       //insert
       for(let i = 0; i < boat.length; i++) {
-        this.board[r][c+i] = 2;
+        this.board[coords.y][coords.x+i] = 2;
       }
     }
 
     if(boat.direction === HORIZONTAL) {
-      c = Math.abs(Math.floor(Math.random() *  this.size));
-      r = Math.abs(Math.floor(Math.random() *  this.size - boat.length));
       //dry run
       for(let i = 0; i < boat.length; i++) {
-        if(this.board[r+i][c] === 2){
+        if(this.board[coords.y+i][coords.x] === 2){
           return false;
         }
       }
       //insert
       for(let i = 0; i < boat.length; i++) {
-        this.board[r+i][c] = 2;
+        this.board[coords.y+i][coords.x] = 2;
       }
     }
     return true
