@@ -5,23 +5,20 @@ export default class BoardComponent extends Component {
 
   @tracked lastClick = null
   @tracked board = []
+  @tracked width = null;
+  @tracked height = null;
 
   constructor() {
     super(...arguments)
-    debugger
-    for(let i = 0; i < this.height; i++) {
-      debugger
-      this.board.push(new Array(this.width))
+    for(let i = 0; i < this.size; i++) {
+      this.board.push(new Array(this.size))
     }
-    console.log(this.board)
+    this.height = this.size * 50;
+    this.width = this.size * 50;
   }
 
-  get height(){
-    return parseInt(this.args.height)
-  }
-
-  get width(){
-    return parseInt(this.args.width)
+  get size(){
+    return parseInt(this.args.size);
   }
 
   @action
@@ -29,7 +26,7 @@ export default class BoardComponent extends Component {
     this.board[rowIndex][colIndex] = true;
     //have to trick ember into rerender
     let newBoard = [];
-    for(let i = 0; i < this.height; i++) {
+    for(let i = 0; i < this.size; i++) {
       newBoard.push([...this.board[i]])
     }
     this.board = newBoard;

@@ -1,5 +1,4 @@
-{{lastClick}}
-<div class="board">
+<div class="board" style="width:{{this.width}}px;height:{{this.height}}px">
   {{#each board as |row ri|}}
     {{#each row as |col ci|}}
       <div class="block {{if col "active"}}" {{action 'bomb' ri ci}}></div>
