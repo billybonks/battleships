@@ -1,7 +1,11 @@
 <div class="board" style="width:{{this.width}}px;height:{{this.height}}px">
   {{#each board as |row ri|}}
     {{#each row as |col ci|}}
-      <div class="block {{if col "active"}}" {{action 'bomb' ri ci}}></div>
+      <div
+        class="block {{if col "active"}}"
+        {{action 'bomb' ri ci}}
+        style="width:{{@blockPx}}px;height:{{@blockPx}}px"
+      />
     {{/each}}
   {{/each}}
 </div>
