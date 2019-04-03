@@ -5,7 +5,9 @@
         class="block {{if col "active"}}"
         {{action 'bomb' ri ci}}
         style="width:{{@blockPx}}px;height:{{@blockPx}}px"
-      />
+      >
+        {{col}}
+      </div>
     {{/each}}
   {{/each}}
 </div>

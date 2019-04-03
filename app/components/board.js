@@ -15,6 +15,8 @@ export default class BoardComponent extends Component {
     let boat1 = new Boat(2,VERTICAL)
     let boat2 = new Boat(2,HORIZONTAL)
     this.board = new Board(this.size);
+    this.board.insertBoat(boat1);
+    this.board.insertBoat(boat2);
     this.height = this.size * 50;
     this.width = this.size * 50;
   }
