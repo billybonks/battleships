@@ -1,6 +1,7 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
+import Boat, { VERTICAL , HORIZONTAL } from 'battleships/models/boat'
 export default class BoardComponent extends Component {
 
   @tracked lastClick = null
@@ -10,6 +11,8 @@ export default class BoardComponent extends Component {
 
   constructor() {
     super(...arguments)
+    let boat1 = new Boat(2,VERTICAL)
+    let boat2 = new Boat(2,HORIZONTAL)
     for(let i = 0; i < this.size; i++) {
       this.board.push(new Array(this.size))
     }
