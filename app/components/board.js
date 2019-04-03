@@ -2,10 +2,11 @@ import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import Boat, { VERTICAL , HORIZONTAL } from 'battleships/models/boat'
+import Board from 'battleships/models/board'
 export default class BoardComponent extends Component {
 
   @tracked lastClick = null
-  @tracked board = []
+
   @tracked width = null;
   @tracked height = null;
 
@@ -13,9 +14,7 @@ export default class BoardComponent extends Component {
     super(...arguments)
     let boat1 = new Boat(2,VERTICAL)
     let boat2 = new Boat(2,HORIZONTAL)
-    for(let i = 0; i < this.size; i++) {
-      this.board.push(new Array(this.size))
-    }
+    this.board = new Board(this.size);
     this.height = this.size * 50;
     this.width = this.size * 50;
   }
@@ -26,15 +25,8 @@ export default class BoardComponent extends Component {
 
   @action
   bomb(rowIndex, colIndex){
-    this.board[rowIndex][colIndex] = true;
-    //have to trick ember into rerender
-    let newBoard = [];
-    for(let i = 0; i < this.size; i++) {
-      newBoard.push([...this.board[i]])
-    }
-    this.board = newBoard;
-    this.lastClick = `${rowIndex},${colIndex}`;
-    this.board.push(null)
+    this.board.attack(rowIndex, colIndex)
+    this.board.refresh();
   }
 
 
