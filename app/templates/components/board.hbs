@@ -1,13 +1,11 @@
 <div class="board" style="width:{{this.width}}px;height:{{this.height}}px">
   {{#each board.board as |row ri|}}
     {{#each row as |col ci|}}
-      <div
-        class="block {{if col "active"}}"
-        {{action 'bomb' ri ci}}
-        style="width:{{@blockPx}}px;height:{{@blockPx}}px"
-      >
-        {{col}}
-      </div>
+      <MapBlock
+        @size={{@blockPx}}
+        @value={{col}}
+        @bomb={{action 'bomb' ri ci}}
+      />
     {{/each}}
   {{/each}}
 </div>

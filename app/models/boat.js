@@ -2,6 +2,7 @@ export default class Boat {
   constructor(length, direction){
     this.length = length
     this.direction = direction;
+    this.coords = null;
   }
 }
 
