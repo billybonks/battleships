@@ -32,15 +32,23 @@ export default class Boat {
   }
 
   attemptInsert(boat) {
+    function checkLength(coords,coord,boat, boardSize){
+      return  coords[coord] + boat.length > boardSize ? coords[coord] - boat.length : coords[coord]
+    }
+
+    function getACoord(boardSize){
+      return (Math.abs(Math.floor(Math.random() *  boardSize)))
+    }
+
     let coords = {
-      x: Math.abs(Math.floor(Math.random() *  this.size)),
-      y: Math.abs(Math.floor(Math.random() *  this.size)),
+      x: getACoord(this.size),
+      y: getACoord(this.size),
     }
 
     if(boat.direction === VERTICAL) {
-      coords.x = coords.x + boat.length > this.size ? coords.x - boat.length : coords.x
+      coords.x = checkLength(coords,'x', boat, this.size);
     } else {
-      coords.y = coords.y + boat.length > this.size ? coords.y - boat.length : coords.y
+      coords.y = checkLength(coords, 'y', boat, this.size);
     }
 
     if(boat.direction === VERTICAL) {
