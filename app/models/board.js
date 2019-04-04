@@ -17,7 +17,9 @@ export default class Boat {
     while(true) {
       let { done } = itterator.next()
       if(!done){
-        this.board.push(new Array(this.size))
+        let x = new Array(this.size);
+        x.fill(0)
+        this.board.push(x)
       } else {
         break;
       }
@@ -38,7 +40,7 @@ export default class Boat {
       this.board[rowIndex][colIndex] = 3;
     } else {
       this.board[rowIndex][colIndex] = 1;
-    }    
+    }
   }
 
   insertBoat(boat) {
