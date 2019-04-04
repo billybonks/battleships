@@ -1,11 +1,11 @@
 import Component from '@glimmer/component';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
-import Boat, { VERTICAL , HORIZONTAL } from 'battleships/models/boat'
-import Board from 'battleships/models/board'
-export default class BoardComponent extends Component {
+import Boat, { VERTICAL , HORIZONTAL } from 'battleships/models/boat';
+import Board from 'battleships/models/board';
 
-  @tracked lastClick = null
+
+export default class BoardComponent extends Component {
 
   @tracked width = null;
   @tracked height = null;
