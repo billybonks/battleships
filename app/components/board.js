@@ -30,6 +30,4 @@ export default class BoardComponent extends Component {
     this.board.attack(rowIndex, colIndex)
     this.board.refresh();
   }
-
-
 }
