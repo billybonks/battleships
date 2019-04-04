@@ -1,4 +1,5 @@
 import { VERTICAL , HORIZONTAL } from 'battleships/models/boat'
+import BoatItterator from 'battleships/data-types/boat-itterator'
 
 export default class BoatInserter {
 
@@ -41,31 +42,21 @@ export default class BoatInserter {
       coords.y = checkLength(coords, 'y', boat, this.size);
     }
 
-    if(boat.direction === VERTICAL) {
-      for(let i = 0; i < boat.length; i++) {
-        //dry run
-        if(this.board[coords.y][coords.x+i] === 2){
-          return false;
-        }
-      }
-      //insert
-      for(let i = 0; i < boat.length; i++) {
-        this.board[coords.y][coords.x+i] = 2;
+    let itterator = new BoatItterator(boat, coords);
+    itterator = itterator[Symbol.iterator]();
+    for(let currentCoord of itterator){
+      console.log(currentCoord)
+      //dry run
+      if(this.board[currentCoord.y][currentCoord.x] === 2){
+        return false;
       }
     }
 
-    if(boat.direction === HORIZONTAL) {
-      //dry run
-      for(let i = 0; i < boat.length; i++) {
-        if(this.board[coords.y+i][coords.x] === 2){
-          return false;
-        }
-      }
-      //insert
-      for(let i = 0; i < boat.length; i++) {
-        this.board[coords.y+i][coords.x] = 2;
-      }
+    itterator = itterator[Symbol.iterator]();
+    for(let currentCoord of itterator){
+      this.board[currentCoord.y][currentCoord.x] = 2;
     }
+
     return true
   }
 }
