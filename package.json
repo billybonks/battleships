@@ -37,6 +37,7 @@
     "ember-cli-uglify": "^2.1.0",
     "ember-data": "github:emberjs/data#2b89fe3178751a62863861cd486358de46eed641",
     "ember-export-application-global": "^2.0.0",
+    "ember-fetch": "^6.5.0",
     "ember-load-initializers": "^2.0.0",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-qunit": "^4.1.2",
@@ -45,11 +46,17 @@
     "ember-welcome-page": "^3.2.0",
     "eslint-plugin-ember": "^6.0.1",
     "eslint-plugin-node": "^8.0.1",
+    "express": "^4.16.4",
+    "glob": "^4.5.3",
     "loader.js": "^4.7.0",
+    "morgan": "^1.9.1",
     "qunit-dom": "^0.8.0",
     "sass": "^1.17.4"
   },
   "engines": {
     "node": "6.* || 8.* || >= 10.*"
+  },
+  "dependencies": {
+    "body-parser": "^1.18.3"
   }
 }
