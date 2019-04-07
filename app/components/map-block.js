@@ -4,7 +4,7 @@ import { action } from '@ember/object';
 export default class MapBlockComponent extends Component {
   @action
   click(){
-    if(this.args.value === 0){
+    if(this.args.value === 0 || this.args.value === 2){
       this.args.bomb();
     }
   }

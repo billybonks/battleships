@@ -1,11 +1,38 @@
-<div class="board" style="width:{{this.width}}px;height:{{this.height}}px">
-  {{#each board.board as |row ri|}}
-    {{#each row as |col ci|}}
-      <MapBlock
-        @size={{@blockPx}}
-        @value={{col}}
-        @bomb={{action 'bomb' ri ci}}
-      />
+<div class="board-container">
+  <div class="board-wrapper" style="width:{{this.width}}px;height:{{this.height}}px">
+    <div class="board">
+      {{#each @board.board as |row y|}}
+        {{#each row as |col x|}}
+          <div
+            class="block water"
+            style="width:{{@blockPx}}px;height:{{@blockPx}}px"
+          >
+          </div>
+        {{/each}}
+      {{/each}}
+    </div>
+    {{#each @boats as |boat|}}
+      <Boat @blockPx={{@blockPx}} @boat={{boat}} />
     {{/each}}
-  {{/each}}
+    {{#unless @currentPlayer}}
+      <div class="fog-board board">
+        {{#each @board.board as |row y|}}
+          {{#each row as |col x|}}
+            {{#unless col}}
+              <div
+                class="block fog-block"
+                {{action 'attack' x y}}
+                style="width:{{@blockPx}}px;height:{{@blockPx}}px"
+              ></div>
+            {{else}}
+              <div
+                class="block"
+                style="width:{{@blockPx}}px;height:{{@blockPx}}px"
+              ></div>
+            {{/unless}}
+          {{/each}}
+        {{/each}}
+      </div>
+    {{/unless}}
+  </div>
 </div>

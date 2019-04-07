@@ -1,14 +1,14 @@
 import { tracked } from '@glimmer/tracking';
 import Range from 'battleships/data-types/range';
-import BoatInserter from 'battleships/inserters/basic';
 
-export default class Boat {
+export default class Board {
   @tracked board = []
+
+  boatCoords = {};
 
   constructor(size){
     this.size = size
     this.sizeItterator = new Range(0, this.size-1);
-    this.boatInserter = new BoatInserter(this);
     this.constructBoard();
   }
 
@@ -35,15 +35,12 @@ export default class Boat {
     this.board = newBoard;
   }
 
-  attack(rowIndex, colIndex){
-    if(this.board[rowIndex][colIndex] == 2){
-      this.board[rowIndex][colIndex] = 3;
+  attack(x, y){
+    if(this.board[y][x] == 2) {
+      this.board[y][x] = 3;
     } else {
-      this.board[rowIndex][colIndex] = 1;
+      this.board[y][x] = 1;
     }
-  }
-
-  insertBoat(boat) {
-    this.boatInserter.insert(boat);
+    this.refresh();
   }
 }

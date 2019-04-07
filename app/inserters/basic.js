@@ -1,5 +1,5 @@
-import { VERTICAL , HORIZONTAL } from 'battleships/models/boat'
-import BoatItterator from 'battleships/data-types/boat-itterator'
+import { VERTICAL , HORIZONTAL } from 'battleships/models/boat';
+import BoatItterator from 'battleships/data-types/boat-itterator';
 
 export default class BoatInserter {
 
@@ -16,10 +16,12 @@ export default class BoatInserter {
   }
 
   insert(boat) {
+    this.coordCache = {};
     let inserted = this.attemptInsert(boat);
     while(!inserted){
       inserted = this.attemptInsert(boat);
     }
+    return this.coordCache;
   }
 
   getACoord(){
@@ -45,7 +47,6 @@ export default class BoatInserter {
     let itterator = new BoatItterator(boat, coords);
     itterator = itterator[Symbol.iterator]();
     for(let currentCoord of itterator){
-      console.log(currentCoord)
       //dry run
       if(this.board[currentCoord.y][currentCoord.x] === 2){
         return false;
@@ -54,8 +55,10 @@ export default class BoatInserter {
 
     itterator = itterator[Symbol.iterator]();
     for(let currentCoord of itterator){
-      this.board[currentCoord.y][currentCoord.x] = 2;
+      this.coordCache[`${currentCoord.x},${currentCoord.y}`] = boat;
     }
+
+    boat.coords = coords;
 
     return true
   }

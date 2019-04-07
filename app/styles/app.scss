@@ -3,17 +3,39 @@
   box-sizing: border-box;
 }
 
-.app {
+.board-container {
   display: flex;
   justify-content: center;
   align-items: center;
+
+}
+
+.fog-block {
+  background: white;
+}
+.fog-board {
+  position:absolute;
+  top: 0px;
+}
+
+
+.board-wrapper {
+  position: relative;
 }
 
 .active {
   background:green;
 }
 
+.water {
+  background: blue;
+}
+
 .board {
   display: flex;
   flex-wrap: wrap;
+}
+
+.boat {
+  position:absolute;
 }

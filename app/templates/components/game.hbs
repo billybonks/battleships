@@ -1,0 +1,10 @@
+<div class="game" >
+  <h1>{{#if @currentPlayer}}You{{else}}Opponent{{/if}}</h1>
+  <Board
+    @board={{this.board}}
+    @blockPx=50
+    @attack={{action attack}}
+    @boats={{this.player.boats}}
+    @currentPlayer={{@currentPlayer}}
+    />
+</div>
