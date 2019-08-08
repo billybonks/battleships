@@ -12,6 +12,7 @@ export default class RTC {
     this.connection.addEventListener('datachannel', () => {
       debugger
     });
+    console.log(this)
     //this.createOffer();
   }
 
@@ -21,8 +22,8 @@ export default class RTC {
     if(!responseJson.offer) {
       await this.createOffer();
       SignalingHelper.listenForAnswers().then((answer) => {
-        console.log('got it');
-        console.log(answer);
+        this.connection.setRemoteDescription(answer);
+        console.log(this)
       });
     } else {
       this.createAnswer(responseJson.offer)
@@ -55,18 +56,18 @@ export default class RTC {
   async iceCandidate(e){
     console.log('local connection ICE candidate: ', e.candidate);
     if(e.candidate) {
-          await this.connection.addIceCandidate(e.candidate);
+      //await this.connection.addIceCandidate(e.candidate);
     }
 
   }
 
   open(){
-    console.log('Local channel closed!');
+    console.log('channel opened!');
     this.connected = false;
   }
 
   close(){
-    console.log('Local channel closed!');
+    console.log('channel closed!');
     this.connected = false;
   }
 

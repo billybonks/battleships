@@ -33,7 +33,8 @@ export default class SignalingHelper {
        let interval = setInterval(async () => {
          console.log('looking for answer')
          const response = await fetch('/api/answers/1');
-         const responseJson = response.json();
+         const responseJson = await response.json();
+         debugger
          if(responseJson.answer){
             resolve(responseJson.answer)
             clearInterval(interval);
