@@ -1,5 +1,41 @@
 .block {
-  width:20px;
-  width:20px;
+  border: black 1px solid;
+  box-sizing: border-box;
+}
+
+.board-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.fog-block {
+  background: white;
+}
+.fog-board {
+  position:absolute;
+  top: 0px;
+}
+
+
+.board-wrapper {
+  position: relative;
+}
+
+.active {
   background:green;
+}
+
+.water {
+  background: blue;
+}
+
+.board {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.boat {
+  position:absolute;
 }
